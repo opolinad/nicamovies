@@ -31,7 +31,7 @@ def login(request:request)->JsonResponse:
             user = User.objects.get(email=email)
 
             if check_password(password, user.password):
-                token = jwt.encode({'email': user.email, 'exp': datetime.now(timezone.utc)+timedelta(hours=1)}, env('SECRET_KEY'))
+                token = jwt.encode({'email': user.email, 'exp': datetime.now(timezone.utc)+timedelta(days=7)}, env('SECRET_KEY'))
 
                 response = {
                     'status': True,
