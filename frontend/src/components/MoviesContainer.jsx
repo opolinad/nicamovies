@@ -1,7 +1,6 @@
-import { Card, CardContent, CardHeader, IconButton } from '@mui/material';
+import { Card, CardContent, CardHeader } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Add } from '@mui/icons-material';
-
+import MovieCard from './MovieCard';
 
 const MoviesContainer = () => {
     const [moviesInformation, setMoviesInformation] = useState([]);
@@ -24,7 +23,19 @@ const MoviesContainer = () => {
                     flexWrap: 'wrap',
                     justifyContent: 'center'
                 }}>
+                    {
+                        moviesInformation?.length &&
+                        moviesInformation.map(movie =>
+                            <MovieCard
+                                key={movie.id}
+                                id={movie.id}
+                                title={movie.title}
+                                releaseDate={movie.release_date}
+                                genre={movie.genre}
+                            />
 
+                        )
+                    }
                 </CardContent>
             </Card>
 
