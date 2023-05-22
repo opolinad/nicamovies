@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse, request
-from .utils.movie import get_movie, create_movie, get_movie, update_movie, delete_movie
+from .utils.movie import get_movies, create_movie, get_movie, update_movie, delete_movie
 from .validators.movie import is_create_movie_info_valid
 import json
 

@@ -18,3 +18,5 @@ class MovieExists():
                     'status': False,
                     'message': 'The movie with the id provided doesn\'t extist'
                 }, status = 404)
+        else:
+            return self.get_response(request)
