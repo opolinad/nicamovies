@@ -17,10 +17,11 @@ def movies(request:request)->JsonResponse:
             }
 
         elif request.method == 'POST':
-            title = request.POST.get('title', '').lstrip()
-            release_date = request.POST.get('release_date')
-            genre = request.POST.get('genre', '').lstrip()
-            plot = request.POST.get('plot', '').lstrip()
+            request_data = json.loads(request.body)
+            title = request_data.get('title', '').lstrip()
+            release_date = request_data.get('release_date')
+            genre = request_data.get('genre', '').lstrip()
+            plot = request_data.get('plot', '').lstrip()
 
             valid_request = is_create_movie_info_valid(title, release_date, genre, plot)
 

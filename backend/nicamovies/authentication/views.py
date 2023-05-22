@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from user.models import User
 import jwt
+import json
 import environ
 
 env = environ.Env()
@@ -18,8 +19,9 @@ def login(request:request)->JsonResponse:
                     'message': 'Only POST method allowed'
                 }, status = 400)
 
-    email = request.POST.get('email','').lstrip()
-    password = request.POST.get('password')
+    request_data = json.loads(request.body)
+    email = request_data.get('email','').lstrip()
+    password = request_data.get('password')
     valid_request = is_login_info_valid(email, password)
 
     response_status = 200
@@ -61,16 +63,18 @@ def login(request:request)->JsonResponse:
     return JsonResponse(response, status = response_status)
 
 def register(request:request):
+    print("Entra")
     if(request.method != 'POST'):
         return JsonResponse({
                     'status': False,
                     'message': 'Only POST method allowed'
                 }, status = 400)
 
-    email = request.POST.get('email','').lstrip()
-    password = request.POST.get('password')
-    name = request.POST.get('first_name','').lstrip()
-    lastname = request.POST.get('last_name','').lstrip()
+    request_data = json.loads(request.body)
+    email = request_data.get('email','').lstrip()
+    password = request_data.get('password')
+    name = request_data.get('first_name','').lstrip()
+    lastname = request_data.get('last_name','').lstrip()
 
     response_status = 201
 
