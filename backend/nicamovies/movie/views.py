@@ -10,6 +10,7 @@ def movies(request:request)->JsonResponse:
             per_page = request.GET.get('per_page', 10)
             movies = get_movies(page_number, per_page)
 
+            response_status = 200
             response = {
                 'status':True,
                 'data': movies
@@ -25,23 +26,26 @@ def movies(request:request)->JsonResponse:
 
             if valid_request[0]:
                 response = create_movie(title, release_date, genre, plot)
+                response_status = 201
             else:
+                response_status = 400
                 response = {
                     'status': False,
                     'message': valid_request[1]
                 }
 
-        return JsonResponse(response)
+        return JsonResponse(response, status = response_status)
 
     except:
         return JsonResponse({
                 'status': False,
                 'message': 'An error has occurred, please contact the administrator.'
-            })
+            }, status = 500)
 
 
 def movie(request:request, movie_id:int)->JsonResponse:
     try:
+        response_status = 200
         if request.method == 'GET':
             response = get_movie(request.movie)
         elif request.method == 'PUT':
@@ -64,15 +68,16 @@ def movie(request:request, movie_id:int)->JsonResponse:
         elif request.method == 'DELETE':
             response = delete_movie(request.movie)
         else:
+            response_status = 400
             response = {
                     'status': False,
                     'message': 'Only GET, PUT and DELETE methods allowed'
                 }
 
-        return JsonResponse(response)
+        return JsonResponse(response, status = response_status)
 
     except:
         return JsonResponse({
                 'status': False,
                 'message': 'An error has occurred, please contact the administrator.'
-            })
+            }, status = 500)

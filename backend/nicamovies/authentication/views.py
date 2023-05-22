@@ -16,11 +16,13 @@ def login(request:request)->JsonResponse:
         return JsonResponse({
                     'status': False,
                     'message': 'Only POST method allowed'
-                })
+                }, status = 400)
 
     email = request.POST.get('email','').lstrip()
     password = request.POST.get('password')
     valid_request = is_login_info_valid(email, password)
+
+    response_status = 200
 
     if valid_request[0]:
         try:
@@ -36,36 +38,41 @@ def login(request:request)->JsonResponse:
                 }
 
             else:
+                response_status = 400
                 response = {
                     'status': False,
                     'message': 'Invalid credentials'
                 }
 
-        except Exception as e:
+        except:
+            response_status = 400
             response = {
                 'status': False,
                 'message': 'Invalid credentials'
             }
 
     else:
+        response_status = 400
         response = {
                 'status': False,
                 'message': valid_request[1]
             }
 
-    return JsonResponse(response)
+    return JsonResponse(response, status = response_status)
 
 def register(request:request):
     if(request.method != 'POST'):
         return JsonResponse({
                     'status': False,
                     'message': 'Only POST method allowed'
-                })
+                }, status = 400)
 
     email = request.POST.get('email','').lstrip()
     password = request.POST.get('password')
     name = request.POST.get('first_name','').lstrip()
     lastname = request.POST.get('last_name','').lstrip()
+
+    response_status = 201
 
     valid_request = is_register_info_valid(name, lastname, email, password)
 
@@ -94,13 +101,15 @@ def register(request:request):
                 message= 'Email is already registered'
             else:
                 message= 'An error has occurred, please contact the administrator.'
+            response_status = 400
             response = {
                 'status': False,
                 'message': message
             }
     else:
+        response_status = 400
         response = {
             'status': False,
             'message': valid_request[1]
         }
-    return JsonResponse(response)
+    return JsonResponse(response, status = response_status)
