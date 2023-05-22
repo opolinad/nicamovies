@@ -7,7 +7,7 @@ class UserExists():
         self.get_response = get_response
 
     def __call__(self, request):
-        if resolve(request.path_info).url_name == 'user':
+        if resolve(request.path_info).url_name in ['user', 'create_rating']:
             user_id = resolve(request.path_info).kwargs.get('user_id')
             try:
                 user = User.objects.get(id=user_id)

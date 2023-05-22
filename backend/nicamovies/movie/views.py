@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse, request
-from .utils.movie import get_movies, create_movie, get_movie, update_movie, delete_movie
-from .validators.movie import is_create_movie_info_valid
+from .utils.movie import get_movies, create_movie, get_movie, update_movie, delete_movie, create_rating_for, update_rating, delete_rating
+from .validators.movie import is_create_movie_info_valid, is_create_rating_info_valid
 import json
 
 def movies(request:request)->JsonResponse:
@@ -61,6 +61,7 @@ def movie(request:request, movie_id:int)->JsonResponse:
             if valid_request[0]:
                 response = update_movie(request.movie, title, release_date, genre, plot)
             else:
+                response_status = 400
                 response = {
                     'status': False,
                     'message': valid_request[1]
@@ -82,3 +83,82 @@ def movie(request:request, movie_id:int)->JsonResponse:
                 'status': False,
                 'message': 'An error has occurred, please contact the administrator.'
             }, status = 500)
+
+def create_rating(request:request, movie_id:int, user_id:int)->JsonResponse:
+    try:
+        if request.method != 'POST':
+            response_status = 400
+            return JsonResponse({
+                'status': False,
+                'message': 'Only POST method allowed'
+            }, status=400)
+
+        if (len(request.body) == 0):
+            return JsonResponse({
+                'status': False,
+                'message': 'No information received'
+            }, status=400)
+
+        request_data = json.loads(request.body)
+        rating = request_data.get('rating')
+        comment = request_data.get('comment', '').lstrip()
+
+        valid_request = is_create_rating_info_valid(rating, comment, movie_id, user_id)
+
+        if valid_request[0]:
+            response_status = 201
+            response = create_rating_for(movie_id, user_id, rating, comment)
+        else:
+            response_status = 400
+            response = {
+                'status': False,
+                'message': valid_request[1]
+            }
+
+        return JsonResponse(response, status = response_status)
+
+    except:
+        return JsonResponse({
+                'status': False,
+                'message': 'An error has occurred, please contact the administrator.'
+            }, status = 500)
+
+def rating(request:request, rating_id:int)->JsonResponse:
+    try:
+        if request.method == 'PUT':
+            request_data = json.loads(request.body)
+            rating = request_data.get('rating')
+            comment = request_data.get('comment', '').lstrip()
+
+            valid_request = is_create_rating_info_valid(rating, comment)
+
+            if valid_request[0]:
+                response = update_rating(request.rating, rating, comment)
+                response_status = 200
+            else:
+                response_status = 400
+                response = {
+                    'status': False,
+                    'message': valid_request[1]
+                }
+        elif request.method == 'DELETE':
+            response = delete_rating(request.rating)
+            response_status = 200
+        else:
+            response_status = 400
+            response = {
+                    'status': False,
+                    'message': 'Only PUT and DELETE methods allowed'
+                }
+
+        return JsonResponse(response, status = response_status)
+
+    except Exception as e:
+        print("Erorrrrrrrrrrrrr", str(e))
+        return JsonResponse({
+                'status': False,
+                'message': 'An error has occurred, please contact the administrator.'
+            }, status = 500)
+
+def prueba(request):
+    return JsonResponse({'Hola':'Hola'})
