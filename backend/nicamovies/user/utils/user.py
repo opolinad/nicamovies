@@ -41,7 +41,8 @@ def get_user(user:User)->JsonResponse:
     return {
         'status': True,
         'message': 'User obtained successfully',
-        'user': model_to_dict(user)
+        'user': model_to_dict(user),
+        'ratings': list(user.rating_set.all().values())
     }
 
 def update_user(user:User, name:str, lastname:str, email:str, password:str)->JsonResponse:

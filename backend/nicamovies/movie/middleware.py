@@ -10,7 +10,7 @@ class MovieExists():
         if resolve(request.path_info).url_name in ['movie', 'create_rating']:
             movie_id = resolve(request.path_info).kwargs.get('movie_id')
             try:
-                movie = Movie.objects.get(id=movie_id)
+                movie = Movie.objects.select_related().get(id=movie_id)
                 request.movie = movie
                 return self.get_response(request)
             except:

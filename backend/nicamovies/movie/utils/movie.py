@@ -39,7 +39,8 @@ def get_movie(movie:Movie)->JsonResponse:
     return {
         'status': True,
         'message': 'Movie obtained successfully',
-        'movie': model_to_dict(movie)
+        'movie': model_to_dict(movie),
+        'ratings':list(movie.rating_set.all().values())
     }
 
 def update_movie(movie:Movie, title:str, release_date:str, genre:str, plot:str)->JsonResponse:

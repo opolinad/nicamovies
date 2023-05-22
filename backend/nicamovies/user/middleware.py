@@ -10,7 +10,7 @@ class UserExists():
         if resolve(request.path_info).url_name in ['user', 'create_rating']:
             user_id = resolve(request.path_info).kwargs.get('user_id')
             try:
-                user = User.objects.get(id=user_id)
+                user = User.objects.select_related().get(id=user_id)
                 request.existent_user = user
                 return self.get_response(request)
             except:
