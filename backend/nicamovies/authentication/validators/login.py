@@ -1,4 +1,3 @@
-from django.http import request
 from django.core.validators import EmailValidator
 from django import forms
 import re

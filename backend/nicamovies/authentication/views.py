@@ -71,7 +71,6 @@ def register(request:request):
 
     if valid_request[0]:
         try:
-            print("SECRET", env('SECRET_KEY'))
             user = User.objects.create(
                     name = name,
                     lastname = lastname,
@@ -94,7 +93,6 @@ def register(request:request):
             if 'UNIQUE' in str(e) and 'email' in str(e):
                 message= 'Email is already registered'
             else:
-                print("Error", str(e))
                 message= 'An error has occurred, please contact the administrator.'
             response = {
                 'status': False,
