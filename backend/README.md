@@ -40,6 +40,8 @@ For the project to work correctly, it is necessary to run migrations. To do this
 
 This command generates the models in the database.
 
+*In this case the DB is already in the directory and is preloaded with some information (user: test@mail.com, password:1234578Aa), so migrations must NOT be run*
+
 ## Starting the Server
 
 The program runs on a server, so in order for the program to run, it is necessary to start the server (this is known as starting the server). In Django, the server is started as follows (this command needs to be executed from the same directory where the manage.py file is located, in this case, it is inside the backend/nicamovies folder, so you need to navigate to that directory to run it):
