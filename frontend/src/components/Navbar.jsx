@@ -16,7 +16,9 @@ const Navbar = () => {
                 NicaMovies
             </Link>
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Link href={`/login`} underline="none" sx={{ fontSize: '1.2rem', color: 'white'}}>
+                Login
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
