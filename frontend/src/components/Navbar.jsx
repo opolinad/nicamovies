@@ -7,6 +7,11 @@ import Button from '@mui/material/Button';
 import { Link } from '@mui/material';
 
 const Navbar = () => {
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+  }
+
   return (
     <Box sx={{ flexGrow: 1, marginBottom: '4vh' }}>
       <AppBar position="static">
@@ -16,9 +21,11 @@ const Navbar = () => {
                 NicaMovies
             </Link>
           </Typography>
-          <Link href={`/login`} underline="none" sx={{ fontSize: '1.2rem', color: 'white'}}>
-                Login
-          </Link>
+          {
+            localStorage.getItem('email') ?
+            <Button color="inherit" onClick={logout}>Logout</Button> :
+            <Button color="inherit" href='/login'>Login</Button>
+          }
         </Toolbar>
       </AppBar>
     </Box>
