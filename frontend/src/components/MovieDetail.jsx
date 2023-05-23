@@ -1,9 +1,10 @@
-import React, {useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import RatingContainer from './RatingContainer';
+import { UserLoggedInContext } from '../App';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -11,8 +12,10 @@ const MovieDetail = () => {
     movie: {},
     ratings:[]
   });
+  const { isUserLoogedIn } = useContext(UserLoggedInContext);
 
-  useEffect(() => {
+
+  const fetchMovie = () => {
     fetch(`http://${process.env.REACT_APP_API_URL}/movie/${movieId}`)
       .then(response => response.json())
       .then(response => {
@@ -21,6 +24,10 @@ const MovieDetail = () => {
           ratings: response.ratings
         });
       });
+  }
+
+  useEffect(() => {
+    fetchMovie();
   },[]);
 
   return (
@@ -47,9 +54,10 @@ const MovieDetail = () => {
       </Card>
 
       {
-        movieInformation.ratings.length > 0 &&
+        (movieInformation.ratings.length > 0 || isUserLoogedIn) &&
         <RatingContainer
-        ratings={movieInformation.ratings}
+          ratings={movieInformation.ratings}
+          fetchMovie={ fetchMovie }
         />
       }
     </>
