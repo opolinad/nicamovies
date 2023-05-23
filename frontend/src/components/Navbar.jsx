@@ -1,15 +1,19 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from '@mui/material';
+import { UserLoggedInContext } from '../App';
 
 const Navbar = () => {
+  const {isUserLoogedIn, setIsUserLoogedIn} = useContext(UserLoggedInContext);
+
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
+    setIsUserLoogedIn(false);
   }
 
   return (
@@ -22,7 +26,7 @@ const Navbar = () => {
             </Link>
           </Typography>
           {
-            localStorage.getItem('email') ?
+            isUserLoogedIn ?
             <Button color="inherit" onClick={logout}>Logout</Button> :
             <Button color="inherit" href='/login'>Login</Button>
           }

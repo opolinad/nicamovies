@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,10 +12,13 @@ import Container from '@mui/material/Container';
 import { Alert } from '@mui/material';
 import { decodeToken } from "react-jwt";
 import { useNavigate } from 'react-router-dom';
+import { UserLoggedInContext } from '../App';
+
 
 const LogIn = () => {
     const [alert, setAlert] = useState(null);
     const navigate = useNavigate();
+    const {setIsUserLoogedIn} = useContext(UserLoggedInContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,6 +43,7 @@ const LogIn = () => {
                     const myDecodedToken = decodeToken(response.token);
                     localStorage.setItem('email', myDecodedToken.email);
                     localStorage.setItem('token', response.token);
+                    setIsUserLoogedIn(true);
                     setTimeout(() => {
                         navigate('/');
                     },2000);
