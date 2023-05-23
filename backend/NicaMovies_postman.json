@@ -1,0 +1,499 @@
+{
+    "info": {
+        "name": "NicaMovies",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "register",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:8000/api/auth/register",
+                            "path": [
+                                "api",
+                                "auth",
+                                "register"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"first_name\":\"Test\",\n  \"last_name\":\"test\",\n  \"email\":\"test@mail.com\",\n  \"password\":\"12345678Aa\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "login",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:8000/api/auth/login",
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"email\":\"lauraa@mail.com\",\n  \"password\":\"12345678Aa\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Movie",
+            "item": [
+                {
+                    "name": "Get all movies",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "2",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "api",
+                                "movie"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        }
+                    }
+                },
+                {
+                    "name": "Create movie",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "2",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "api",
+                                "movie"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NDc3NjgxMn0.3EAcMLsM7Off2IWrEq6H5h7VvmM8_ZbnyYijSaigrQ4"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"title\": \"Prueba\",\n  \"release_date\": \"2023-05-21\",\n  \"genre\": \"action\",\n  \"plot\": \"Historia entretenida\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Get one movie",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/2",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "2",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "api",
+                                "movie",
+                                "2"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        }
+                    }
+                },
+                {
+                    "name": "Edit movie",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/2",
+                            "path": [
+                                "api",
+                                "movie",
+                                "2"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"title\": \"New movie\",\n  \"release_date\": \"2023-05-21\",\n  \"genre\": \"action\",\n  \"plot\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at nibh sit amet est porta rhoncus et a lacus. Fusce auctor mi eget rutrum imperdiet. Aenean eleifend nibh lobortis libero mattis, sit amet pulvinar massa convallis. Nam sed arcu tincidunt, bibendum mi a, rutrum urna. Phasellus at urna lacinia, ultrices nisl tincidunt, faucibus neque. Nulla congue urna id ante tincidunt ornare. Cras vel erat sed mi sodales consequat. Ut commodo sapien a purus porttitor, vitae rhoncus erat viverra. Nunc eu porttitor sem. Duis ut ligula eu orci ultrices tempus at a ex. Aliquam ultricies, turpis at tincidunt iaculis, diam est blandit mi, ac ullamcorper dui lorem ut mi. Curabitur bibendum mattis porttitor. Vivamus neque nulla, rhoncus eu porttitor ut, semper vitae tellus. Mauris lacinia lorem eget ultricies elementum. Aenean a tincidunt arcu. Donec fermentum arcu est, vel semper nulla egestas quis.\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete movie",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/8",
+                            "path": [
+                                "api",
+                                "movie",
+                                "8"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"title\": \"New movie\",\n  \"release_date\": \"2023-05-21\",\n  \"genre\": \"action\",\n  \"plot\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at nibh sit amet est porta rhoncus et a lacus. Fusce auctor mi eget rutrum imperdiet. Aenean eleifend nibh lobortis libero mattis, sit amet pulvinar massa convallis. Nam sed arcu tincidunt, bibendum mi a, rutrum urna. Phasellus at urna lacinia, ultrices nisl tincidunt, faucibus neque. Nulla congue urna id ante tincidunt ornare. Cras vel erat sed mi sodales consequat. Ut commodo sapien a purus porttitor, vitae rhoncus erat viverra. Nunc eu porttitor sem. Duis ut ligula eu orci ultrices tempus at a ex. Aliquam ultricies, turpis at tincidunt iaculis, diam est blandit mi, ac ullamcorper dui lorem ut mi. Curabitur bibendum mattis porttitor. Vivamus neque nulla, rhoncus eu porttitor ut, semper vitae tellus. Mauris lacinia lorem eget ultricies elementum. Aenean a tincidunt arcu. Donec fermentum arcu est, vel semper nulla egestas quis.\"\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "Get all users",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:8000/api/user/",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "2",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "api",
+                                "user"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Create user",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:8000/api/user/",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "2",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "api",
+                                "user"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Andres\",\n  \"lastname\": \"Lopez\",\n  \"email\": \"andres@mail.com\",\n  \"password\": \"12345678aA\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Get one user",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "localhost:8000/api/user/5",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "2",
+                                    "disabled": true
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "api",
+                                "user",
+                                "5"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Edit  user",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "localhost:8000/api/user/5",
+                            "path": [
+                                "api",
+                                "user",
+                                "5"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"name\": \"Daniel\",\n  \"lastname\": \"Lopez\",\n  \"email\": \"andreslop@mail.com\",\n  \"password\": \"12345678aA\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete user",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "localhost:8000/api/user/8",
+                            "path": [
+                                "api",
+                                "user",
+                                "8"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Rating",
+            "item": [
+                {
+                    "name": "Create rating",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/2/user/6/create-rating",
+                            "path": [
+                                "api",
+                                "movie",
+                                "2",
+                                "user",
+                                "6",
+                                "create-rating"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"rating\":3,\n  \"comment\": \"Terrific\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Update rating",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/rating/1",
+                            "path": [
+                                "api",
+                                "movie",
+                                "rating",
+                                "1"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"rating\":3,\n  \"comment\": \"Terrific\"\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "Delete rating",
+                    "request": {
+                        "method": "PUT",
+                        "url": {
+                            "raw": "localhost:8000/api/movie/rating/1",
+                            "path": [
+                                "api",
+                                "movie",
+                                "rating",
+                                "1"
+                            ],
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhdXJhYUBtYWlsLmNvbSIsImV4cCI6MTY4NTM4MTcwOH0.EBDD8EzbDccz7J8TgoKmf5693G6CuM4MBbSaM38HrhA"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n  \"rating\":3,\n  \"comment\": \"Terrific\"\n}"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
