@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Link } from '@mui/material';
 
 const Navbar = () => {
   return (
@@ -11,7 +12,9 @@ const Navbar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Nicamovies
+            <Link href={`/`} underline="none" sx={{ fontSize: '1.2rem', color: 'white'}}>
+                NicaMovies
+            </Link>
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
