@@ -4,6 +4,7 @@ import MovieDetail from './components/MovieDetail';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/' element={ <CardContainer /> } />
         <Route path='/movie/:movieId' element={ <MovieDetail /> } />
         <Route path='/login' element={ <LogIn /> } />
+        <Route path='/signup' element={ <SignUp /> } />
       </Routes>
     </BrowserRouter>
   );
