@@ -45,6 +45,7 @@ const SignUp = () => {
                     })
                     const myDecodedToken = decodeToken(response.token);
                     localStorage.setItem('email', myDecodedToken.email);
+                    localStorage.setItem('userId', myDecodedToken.user_id);
                     localStorage.setItem('token', response.token);
                     setIsUserLoogedIn(true);
                     setTimeout(() => {
