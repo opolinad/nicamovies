@@ -38,7 +38,6 @@ const MoviesContainer = () => {
                     }
                 </CardContent>
             </Card>
-
         </>
     );
 }
